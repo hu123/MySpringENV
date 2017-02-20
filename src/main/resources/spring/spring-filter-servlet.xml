@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mySpringFilter" class="filters.MySpringFilter">
+        <property name="name" value="我去"/>
+    </bean>
+
+
+    <bean id="mySpringServlet" class="servlet.MySpringServlet"/>
+
+    <bean id="proxyFilter" class="filters.ProxyFilter">
+        <property name="filters">
+            <list>
+                <ref bean="filter1"/>
+                <ref bean="filter2"/>
+                <ref bean="filter3"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="filter1" class="filters.Filter1"/>
+    <bean id="filter2" class="filters.Filter2"/>
+    <bean id="filter3" class="filters.Filter3"/>
+
+
+
+
+
+
+</beans>

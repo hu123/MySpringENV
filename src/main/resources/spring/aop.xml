@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--============================基于JDK动态代理实现的AOP==============================================-->
+    <bean id="helloWorldImpl1" class="aop.HelloWorldImpl1"/>
+    <bean id="timeHandler" class="aop.TimeHandler"/>
+
+    <aop:config>
+        <aop:aspect id="time" ref="timeHandler">
+            <aop:pointcut id="addAllMethod" expression="execution(* aop.HelloWorld.doPrint())" />
+            <aop:before method="before" pointcut-ref="addAllMethod" />
+            <aop:after method="after" pointcut-ref="addAllMethod" />
+        </aop:aspect>
+    </aop:config>
+
+
+    <!--============================基于JDK动态代理实现的AOP==============================================-->
+
+
+    <!--=========================使用AspectJ的注解实现AOP-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <context:component-scan base-package="aop"/>
+    <bean id="userManager" class="aop.UserManager"/>
+    <bean id="logManager" class="aop.LogManager"/>
+    <!--=========================使用AspectJ的注解实现AOP-->
+
+
+</beans>
+
+

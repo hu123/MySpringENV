@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+					    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--
+        配置Schedule记得添加Spring的命名空间...
+    -->
+
+    <!--
+        注解的方式配置
+        package springscheduled;
+
+        import org.springframework.context.ApplicationContext;
+        import org.springframework.context.support.ClassPathXmlApplicationContext;
+        import org.springframework.scheduling.annotation.Scheduled;
+        import org.springframework.stereotype.Component;
+
+        @Component
+        public class MyTestServiceImpl implements MyTestService
+        {
+        //    @Scheduled(cron="0/5 * *  * * ? ")   //每5秒执行一次
+            @Scheduled(fixedRate = 2000)
+            @Override
+            public void myTest()
+            {
+                System.out.println("这个居然可以执行到????????");
+            }
+
+
+            public static void main(String[] args)
+            {
+                ApplicationContext applicationContext = new ClassPathXmlApplicationContext( "scheduled.xml" );
+
+
+            }
+        }
+
+    -->
+
+
+    <!--
+        xml配置文件的方式 配置schedule
+
+
+package springscheduled;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class MyTask
+{
+    @Autowired
+    private SimpleDateFormat simpleDateFormat ;
+
+    public void show()
+    {
+        System.out.println( "show方法当前时间:" + simpleDateFormat.format( new Date() ) );
+
+    }
+
+    public void print()
+    {
+        System.out.println( "print方法当前时间:" + simpleDateFormat.format( new Date() ) );
+    }
+
+}
+    -->
+
+
+
+
+
+
+<!-- Spring scheduled配置-->
+    <!-- ==============================若要启用schedule功能取消注释
+    <task:annotation-driven/>
+
+    <bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="HH:mm:ss"/>
+    </bean>
+
+    <bean id="myTask" class="springscheduled.MyTask"/>
+
+    <task:scheduled-tasks>
+        <task:scheduled ref="myTask" method="show" cron="*/5 * * * * ?"/>
+        <task:scheduled ref="myTask" method="print" cron="*/10 * * * * ?"/>
+    </task:scheduled-tasks>
+
+    <context:component-scan base-package="springscheduled"/>
+
+-->
+</beans>

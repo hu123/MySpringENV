@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <!--======根据名字去匹配找对应的国际化资源文件倘若用户的环境为中文环境,则匹配resource_zh_CN.properties
+                若为英文环境则匹配resource_en_US.properties
+                ====-->
+            <list>
+                <value>i18n.resource</value>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>
